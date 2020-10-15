@@ -1,4 +1,3 @@
-import { response } from 'express';
 import { API } from '../config';
 
 export const signup = (user) => {
@@ -19,7 +18,6 @@ export const signup = (user) => {
 };
 
 export const signin = (user) => {
-	// console.log(name, email, password);
 	return fetch(`${API}/signin`, {
 		method: 'POST',
 		headers: {
@@ -37,14 +35,14 @@ export const signin = (user) => {
 };
 
 export const authenticate = (data, next) => {
-	if (typeof window !== undefined) {
+	if (typeof window !== 'undefined') {
 		localStorage.setItem('jwt', JSON.stringify(data));
 		next();
 	}
 };
 
 export const signout = (next) => {
-	if (typeof window !== undefined) {
+	if (typeof window !== 'undefined') {
 		localStorage.removeItem('jwt');
 		next();
 		return fetch(`${API}/signout`, {
