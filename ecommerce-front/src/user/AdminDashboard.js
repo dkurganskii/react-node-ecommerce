@@ -1,6 +1,6 @@
 import React from 'react';
 import Layout from '../core/Layout';
-import { isAthenticated, isAuthenticated } from '../auth';
+import { isAuthenticated } from '../auth';
 import { Link } from 'react-router-dom';
 
 const AdminDashboard = () => {
