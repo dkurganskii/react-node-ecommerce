@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Layout from '../core/Layout';
 import { isAuthenticated } from '../auth';
 import { Link } from 'react-router-dom';
-import { createProduct } from './ApiAdmin';
+import { createProduct, getCategories } from './ApiAdmin';
 
 const AddProduct = () => {
 	const [ values, setValues ] = useState({
@@ -36,8 +36,19 @@ const AddProduct = () => {
 		formData
 	} = values;
 
+	// load categories and set form data
+	const init = () => {
+		getCategories().then((data) => {
+			if (data.error) {
+				setValues({ ...values, error: data.error });
+			} else {
+				setValues({ ...values, categories: data, formData: new FormData() });
+			}
+		});
+	};
+
 	useEffect(() => {
-		setValues({ ...values, formData: new FormData() });
+		init();
 	}, []);
 
 	const handleChange = (name) => (event) => {
@@ -94,14 +105,20 @@ const AddProduct = () => {
 			<div className="form-group">
 				<label className="text-muted">Category</label>
 				<select onChange={handleChange('category')} className="form-control">
-					<option value="5f897fb462375810f53dae6b">Python</option>
-					<option value="5f897fb462375810f53dae6b">PHP</option>
+					<option>Please Select</option>
+					{categories &&
+						categories.map((c, i) => (
+							<option key={i} value={c._id}>
+								{c.name}
+							</option>
+						))}
 				</select>
 			</div>
 
 			<div className="form-group">
 				<label className="text-muted">Shipping</label>
 				<select onChange={handleChange('shipping')} className="form-control">
+					<option>Please Select</option>
 					<option value="0">No</option>
 					<option value="1">Yes</option>
 				</select>

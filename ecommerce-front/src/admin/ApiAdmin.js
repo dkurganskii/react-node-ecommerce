@@ -1,3 +1,4 @@
+import { response } from 'express';
 import { API } from '../config';
 
 export const createCategory = (userId, token, category) => {
@@ -33,4 +34,14 @@ export const createProduct = (userId, token, product) => {
 		.catch((err) => {
 			console.log(err);
 		});
+};
+
+export const getCategories = () => {
+	return fetch(`${API}/categories`, {
+		method: 'GET'
+	})
+		.then((response) => {
+			return response.json();
+		})
+		.catch((err) => console.log(err));
 };
