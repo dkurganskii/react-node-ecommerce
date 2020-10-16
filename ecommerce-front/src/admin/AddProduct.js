@@ -5,8 +5,7 @@ import { Link } from 'react-router-dom';
 import { createProduct } from './ApiAdmin';
 
 const AddProduct = () => {
-	const { user, token } = isAuthenticated();
-	const { values, setValues } = useState({
+	const [ values, setValues ] = useState({
 		name: '',
 		description: '',
 		price: '',
@@ -21,7 +20,7 @@ const AddProduct = () => {
 		redirectToProfile: false,
 		formData: ''
 	});
-
+	const { user, token } = isAuthenticated();
 	const {
 		name,
 		description,
@@ -48,7 +47,24 @@ const AddProduct = () => {
 	};
 
 	const clickSubmit = (event) => {
-		//
+		event.preventDefault();
+		setValues({ ...values, error: '', loading: true });
+		createProduct(user._id, token, formData).then((data) => {
+			if (data.error) {
+				setValues({ ...values, error: data.error });
+			} else {
+				setValues({
+					...values,
+					name: '',
+					description: '',
+					photo: '',
+					price: '',
+					quantity: '',
+					loading: false,
+					createdProduct: data.name
+				});
+			}
+		});
 	};
 
 	const newPostForm = () => (
@@ -79,12 +95,8 @@ const AddProduct = () => {
 				<label className="text-muted">Category</label>
 				<select onChange={handleChange('category')} className="form-control">
 					<option value="5f897fb462375810f53dae6b">Python</option>
+					<option value="5f897fb462375810f53dae6b">PHP</option>
 				</select>
-			</div>
-
-			<div className="form-group">
-				<label className="text-muted">Quantity</label>
-				<input onChange={handleChange('quantity')} type="number" className="form-control" value={quantity} />
 			</div>
 
 			<div className="form-group">
@@ -93,6 +105,11 @@ const AddProduct = () => {
 					<option value="0">No</option>
 					<option value="1">Yes</option>
 				</select>
+			</div>
+
+			<div className="form-group">
+				<label className="text-muted">Quantity</label>
+				<input onChange={handleChange('quantity')} type="number" className="form-control" value={quantity} />
 			</div>
 			<button className="btn btn-outline-primary">Create Product</button>
 		</form>
