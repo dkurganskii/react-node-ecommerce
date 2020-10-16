@@ -1,4 +1,3 @@
-import { response } from 'express';
 import { API } from '../config';
 
 export const createCategory = (userId, token, category) => {
