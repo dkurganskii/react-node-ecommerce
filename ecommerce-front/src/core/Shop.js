@@ -22,13 +22,20 @@ const Shop = () => {
 		init();
 	}, []);
 
+	const handleFilters = (filters, filterBy) => {
+		console.log('SHOP', filters, filterBy);
+	};
+
 	return (
 		<Layout title="Shop Page" description="Search and find books of your choice" className="container-fluid">
 			<div className="row">
 				<div className="col-4">
 					<h4>Filter by categories</h4>
 					<ul>
-						<Checkbox categories={categories} />
+						<Checkbox
+							categories={categories}
+							handleFilters={(filters) => handleFilters(filters, 'category')}
+						/>
 					</ul>
 				</div>
 				<div className="col-8">right</div>
