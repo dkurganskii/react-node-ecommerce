@@ -28,6 +28,7 @@ const Search = () => {
 	}, []);
 
 	const searchData = () => {
+		// console.log(search, category);
 		if (search) {
 			list({ search: search || undefined, category: category }).then((response) => {
 				if (response.error) {
@@ -49,10 +50,10 @@ const Search = () => {
 	};
 
 	const searchMessage = (searched, results) => {
-		if (searched && results > 0) {
+		if (searched && results.length > 0) {
 			return `Found ${results.length} products`;
 		}
-		if (searched && results < 1) {
+		if (searched && results.length < 1) {
 			return `No products found`;
 		}
 	};
@@ -80,6 +81,7 @@ const Search = () => {
 							))}
 						</select>
 					</div>
+
 					<input
 						type="search"
 						className="form-control"
