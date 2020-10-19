@@ -17,16 +17,20 @@ const Product = (props) => {
 		});
 	};
 
-	useEffect = (() => {
+	useEffect(() => {
 		const productId = props.match.params.productId;
 		loadSingleProduct(productId);
-	},
-	[]);
+	}, []);
 
 	return (
-		<Layout title="Home Page" description="Node React E-commerce App" className="container-fluid">
-			<h2 className="mb-4">Single Product</h2>
-			<div className="row">{JSON.stringify(product)}</div>
+		<Layout
+			title={product && product.name}
+			description={product && product.description && product.description.substring(0, 100)}
+			className="container-fluid"
+		>
+			<div className="row">
+				{product && product.description && <Card product={product} showViewProductButton={false} />}
+			</div>
 		</Layout>
 	);
 };
