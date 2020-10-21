@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Layout from './Layout';
 import { getCart, removeItem } from './CartHelpers';
 import Card from './Card';
+import Checkout from './Checkout'
 
 const Cart = () => {
 	const [ run, setRun ] = useState(false);
@@ -28,6 +29,7 @@ const Cart = () => {
 						cartUpdate={true}
 						showRemoveProductButton={true}
 						setRun={setRun}
+						run={run}
 					/>
 				))}
 			</div>
@@ -46,7 +48,9 @@ const Cart = () => {
 				<div className="col-6">{items.length > 0 ? showItems(items) : noItemsMessage()}</div>
 
 				<div className="col-6">
-					<p>show checkout options</p>
+					<h2 className="mb-4">Your cart summary</h2>
+					<hr/>
+					<Checkout products={items}/>
 				</div>
 			</div>
 		</Layout>
