@@ -81,46 +81,63 @@ const buy = ()=>{
             // empty cart
             // create order
 
-            const createOrderData ={
-                products: products,
-                transaction_id: response.transaction.id,
-                amount: response.transaction.amount,
-                address: data.address
-            }
+//             const createOrderData ={
+//                 products: products,
+//                 transaction_id: response.transaction.id,
+//                 amount: response.transaction.amount,
+//                 address: data.address
+//             }
 
-            createOrder(userId, token, createOrderData )
+//             createOrder(userId, token, createOrderData)
+//             setData({...data, success: response.success})
+//             emptyCart(()=>{
+//                 setRun(!run);
+//                 console.log('Payment success and empty cart ')
+//             })
+//         })
+//         .catch(error => console.log(error))
+//     })
+//     .catch(error =>{
+//         // console.log('dropin error: ', error);
+//         setData({...data, error: error.message})
+//     })
+// }
 
-            setData({...data, success: response.success})
-            emptyCart(()=>{
-                setRun(!run);
-                console.log('Payment success and empty cart ')
-            })
-        })
-        .catch(error => console.log(error))
+const createOrderData = {
+    products: products,
+    transaction_id: response.transaction.id,
+    amount: response.transaction.amount,
+    address: data.address
+};
+
+createOrder(userId, token, createOrderData)
+    .then(response => {
+        emptyCart(() => {
+            setRun(!run);
+            console.log(
+                "payment success and empty cart"
+            );
+            setData({
+                loading: false,
+                success: true
+            });
+        });
     })
-    .catch(error =>{
-        // console.log('dropin error: ', error);
-        setData({...data, error: error.message})
-    })
-}
-
-const showError = error => (
-    <div
-        className="alert alert-danger"
-        style={{ display: error ? "" : "none" }}
-    >
-        {error}
-    </div>
-);
-
-const showSuccess = success => (
-    <div
-        className="alert alert-info"
-        style={{ display: success ? "" : "none" }}
-    >
-      Thanks! Your payment was successful!
-    </div>
-);
+    .catch(error => {
+        console.log(error);
+        setData({ loading: false });
+    });
+})
+.catch(error => {
+console.log(error);
+setData({ loading: false });
+});
+})
+.catch(error => {
+// console.log("dropin error: ", error);
+setData({ ...data, error: error.message });
+});
+};
 
 
 const showDropIn = () => (
@@ -151,6 +168,24 @@ const showDropIn = () => (
                 </button>
             </div>
         ) : null}
+    </div>
+);
+
+const showError = error => (
+    <div
+        className="alert alert-danger"
+        style={{ display: error ? "" : "none" }}
+    >
+        {error}
+    </div>
+);
+
+const showSuccess = success => (
+    <div
+        className="alert alert-info"
+        style={{ display: success ? "" : "none" }}
+    >
+      Thanks! Your payment was successful!
     </div>
 );
 
