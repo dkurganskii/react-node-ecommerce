@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 import Layout from '../core/Layout';
 import { isAuthenticated } from '../auth';
 import { Link } from 'react-router-dom';
-import { listOrders } from './ApiAdmin';
+import { listOrders, getStatusValues } from './ApiAdmin';
 import moment from 'moment'
 
  const Orders =()=>{
 const [orders, setOrders] = useState([])
+const [statusValues, setStatusValues] = useState([])
 const {user, token} = isAuthenticated()
 
 const loadOrders = ()=>{
@@ -19,15 +20,26 @@ listOrders(user._id, token).then(data =>{
 })
 }
 
+const loadStatusValues = () => {
+    getStatusValues(user._id, token).then(data => {
+        if (data.error) {
+            console.log(data.error);
+        } else {
+            setStatusValues(data);
+        }
+    });
+};
+
 useEffect(()=>{
     loadOrders();
+    loadStatusValues()
 }, [])
 
-const showInput=(key, value)=>(
-    <div className='input-group mb-2 mr-sm-2'>
+    const showInput=(key, value)=>(
+        <div className='input-group mb-2 mr-sm-2'>
         <div className='input-group-prepend'>
-<div className='input-group-text'>{key}</div>
-<input type='text' value={value} className='form-control' readOnly/>
+       <div className='input-group-text'>{key}</div>
+        <input type='text' value={value} className='form-control' readOnly/>
         </div>
     </div>
 )
@@ -41,19 +53,40 @@ const showOrdersLength = ()=>{
         return <h1 className="text-danger">No orders</h1>
     }
 }
-return (
-                    <Layout title="Orders" description={`Welcome ${user.name}, you can manage all the orders here`}>
-        <div className="row">
+
+const handleStatusChange = (e, orderId) => {
+    console.log("update order status");
+};
+
+const showStatus = o => (
+    <div className="form-group">
+        <h3 className="mark mb-4">Status: {o.status}</h3>
+        <select
+            className="form-control"
+            onChange={e => handleStatusChange(e, o._id)}
+        >
+            <option>Update Status</option>
+            {statusValues.map((status, index) => (
+                <option key={index} value={status}>
+                    {status}
+                </option>
+            ))}
+        </select>
+    </div>
+);
+
+return ( <Layout title="Orders" description={`Welcome ${user.name}, you can manage all the orders here`}>
+                    <div className="row">
                         <div className="col-md-8 offset-md-2">
-                {showOrdersLength()}
-                {orders.map((o, oIndex)=>{
+                    {showOrdersLength()}
+                   {orders.map((o, oIndex)=>{
 return(
     <div className='mt-5' key={oIndex} style={{borderBottom: '5px solid indigo'}}>
         <h2 className='mb-5'>
 <span className='bg-primary'>Order id: {o._id}</span>
         </h2>
         <ul className='list-group mb-2'>
-<li className='list-group-item'>{o.status}</li>
+<li className='list-group-item'>{showStatus(o)}</li>
 <li className='list-group-item'>Transaction ID: {o.transaction_id}</li>
 <li className='list-group-item'>Amount: ${o.amount}</li>
 <li className='list-group-item'>Ordered by: {o.user.name}</li>
