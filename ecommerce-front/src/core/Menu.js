@@ -32,6 +32,7 @@ const Menu = ({ history }) => (
 					</sup>
 				</Link>
 			</li>
+
 			{isAuthenticated() &&
 			isAuthenticated().user.role === 0 && (
 				<li className="nav-item">
@@ -49,6 +50,8 @@ const Menu = ({ history }) => (
 					</Link>
 				</li>
 			)}
+
+           
 
 			{!isAuthenticated() && (
 				<Fragment>
