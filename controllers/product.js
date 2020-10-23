@@ -3,6 +3,7 @@ const _ = require('lodash');
 const fs = require('fs');
 const Product = require('../models/product');
 const { errorHandler } = require('../helpers/dbErrorHandler');
+const { Order } = require('../models/order');
 
 exports.productById = (req, res, next, id) => {
 	Product.findById(id).populate('category').exec((err, product) => {
@@ -277,3 +278,4 @@ let bulkOps =req.body.order.products.map((item)=>{
 })
 next()
 }
+
