@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Layout from '../core/Layout';
 import { isAuthenticated } from '../auth';
 import { Link } from 'react-router-dom';
-import { listOrders, getStatusValues } from './ApiAdmin';
+import { listOrders, getStatusValues, updateOrderStatus } from './ApiAdmin';
 import moment from 'moment'
 
  const Orders =()=>{
@@ -55,7 +55,15 @@ const showOrdersLength = ()=>{
 }
 
 const handleStatusChange = (e, orderId) => {
-    console.log("update order status");
+    updateOrderStatus(user._id, token, orderId, e.target.value).then(
+        data => {
+            if (data.error) {
+                console.log("Status update failed");
+            } else {
+                loadOrders();
+            }
+        }
+    );
 };
 
 const showStatus = o => (
