@@ -88,7 +88,7 @@ const createOrderData = {
     products: products,
     transaction_id: response.transaction.id,
     amount: response.transaction.amount,
-    address: deliveryAddress
+    address: deliveryAddress 
 };
 
 createOrder(userId, token, createOrderData)
