@@ -21,7 +21,7 @@ listOrders(user._id, token).then(data =>{
 }
 
 const loadStatusValues = () => {
-    getStatusValues(user._id, token).then(data => {
+    getStatusValues(user._id, token).then(data =>       {
         if (data.error) {
             console.log(data.error);
         } else {
@@ -76,7 +76,7 @@ const showStatus = o => (
 );
 
 return ( <Layout title="Orders" description={`Welcome ${user.name}, you can manage all the orders here`}>
-                    <div className="row">
+                      <div className="row">
                         <div className="col-md-8 offset-md-2">
                     {showOrdersLength()}
                    {orders.map((o, oIndex)=>{
@@ -116,4 +116,4 @@ return(
  }
 
 
- export default Orders;
+ export default Orders  ;
