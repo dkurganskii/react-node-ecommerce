@@ -47,6 +47,16 @@ const Signin = () => {
 				<label className="text-muted">Password</label>
 				<input onChange={handleChange('password')} type="password" className="form-control" value={password} />
 			</div>
+			<div>*You can use the following credentials for testing*<br/>
+				User<br/>
+				Email: user@gmail.com<br/>
+				Password: user123<br/>
+
+				Admin<br/>
+				Email: admin@gmail.com<br/>
+				Password: admin123<br/>
+			</div>
+			<br/>
 			<button onClick={clickSubmit} className="btn btn-primary">
 				Submit
 			</button>
