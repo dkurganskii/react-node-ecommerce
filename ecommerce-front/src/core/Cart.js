@@ -51,7 +51,13 @@ const Cart = () => {
 					<h2 className="mb-4">Your cart summary</h2>
 					<hr/>
 					<Checkout products={items} setRun={setRun} run={run} />
+					<br/>
+					<div>*Please use the following test credit card for payments*<br/>
+				Card Number: 4242 4242 4242 4242<br/>
+				Expiration Date: Any future date<br/>
+					</div>
 				</div>
+				
 			</div>
 		</Layout>
 	);
