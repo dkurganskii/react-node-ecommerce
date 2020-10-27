@@ -15,7 +15,6 @@ const Checkout = ({products, setRun = f => f, run = undefined})=>{
         clientToken: null,
         error: '',
         instance: {},
-        error: '',
         address: ''
     })
 

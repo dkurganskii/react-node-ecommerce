@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Layout from './Layout';
 import { read, listRelated } from './ApiCore';
-import Card from './Card';
 import SingleCard from './SingleCard';
 
 const Product = (props) => {
