@@ -2,7 +2,7 @@ import React from 'react';
 import Menu from './Menu';
 import '../styles.css';
 
-const Layout = ({ title = 'Title', description = 'Description', className, children }) => (
+const Layout = ({ title = 'Title', description, className, children }) => (
 	<div>
 		<Menu />
 		<div className="jumbotron">
