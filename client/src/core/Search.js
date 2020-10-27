@@ -69,7 +69,7 @@ const Search = () => {
 
                 <div className="row">
                     {results.map((product, i) => (
-                        <div className=" mb-3 col-sm-2 col-md-6 col-lg-12">
+                        <div className=" mb-3 col-sm-2 col-md-6 col-lg-4">
                             <Card key={i} product={product} />
                         </div>
                     ))}

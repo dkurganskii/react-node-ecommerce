@@ -84,7 +84,7 @@ const showStatus = o => (
     </div>
 );
 
-return ( <Layout title="Orders" description={`Welcome ${user.name}, you can manage all the orders here`}>
+return ( <Layout className="container-fluid" title="Orders" description={`Welcome ${user.name}, you can manage all the orders here`}>
                       <div className="row">
                         <div className="col-md-8 offset-md-2">
                     {showOrdersLength()}

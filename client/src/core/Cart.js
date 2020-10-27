@@ -53,8 +53,8 @@ const Cart = () => {
 					<Checkout products={items} setRun={setRun} run={run} />
 					<br/>
 					<div>*Please use the following test credit card for payments*<br/>
-				Card Number: 4242 4242 4242 4242<br/>
-				Expiration Date: Any future date<br/>
+				<span style={{fontWeight: 'bold'}}>Card Number:</span> 4242 4242 4242 4242<br/>
+				<span style={{fontWeight: 'bold'}}>Expiration Date:</span> Any future date<br/>
 					</div>
 				</div>
 				

@@ -63,7 +63,7 @@ const AddCategory = () => {
 	);
 
 	return (
-		<Layout title="Add a new category" description={`Welcome ${user.name}, ready to add a new category?`}>
+		<Layout className="container-fluid" title="Add a new category" description={`Welcome ${user.name}, ready to add a new category?`}>
 			<div className="row">
 				{/* <div className="col-md-8 offset-md-2"> */}
 				<div className="col-sm-12 col-md-3 col-lg-12 mb-2">
