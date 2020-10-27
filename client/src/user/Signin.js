@@ -40,19 +40,19 @@ const Signin = () => {
 		<form>
 			<div className="form-group">
 				<label className="text-muted">Email</label>
-				<input onChange={handleChange('email')} type="email" className="form-control" value={email} />
+				<input onChange={handleChange('email')} type="email" className="form-control col-6" value={email} />
 			</div>
 
 			<div className="form-group">
 				<label className="text-muted">Password</label>
-				<input onChange={handleChange('password')} type="password" className="form-control" value={password} />
+				<input onChange={handleChange('password')} type="password" className="form-control col-6" value={password} />
 			</div>
 			<div>*You can use the following credentials for testing*<br/>
-				User<br/>
+				<span style={{fontWeight: 'bold'}}>User</span><br/>
 				Email: user@gmail.com<br/>
 				Password: user123<br/>
 
-				Admin<br/>
+				<span style={{fontWeight: 'bold'}}>Admin</span><br/>
 				Email: admin@gmail.com<br/>
 				Password: admin123<br/>
 			</div>

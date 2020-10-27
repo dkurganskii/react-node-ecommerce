@@ -85,10 +85,10 @@ const AddProduct = () => {
 	};
 
 	const newPostForm = () => (
-		<form className="mb-3" onSubmit={clickSubmit}>
+		<form className="mb-3 col-sm-12" onSubmit={clickSubmit}>
 			<h4>Post Photo</h4>
 			<div className="form-group">
-				<label className="btn btn-secondary">
+				<label className="btn btn-secondary col-sm-12 col-md-6 col-lg-4">
 					<input onChange={handleChange('photo')} type="file" name="photo" accept="image/*" />
 				</label>
 			</div>

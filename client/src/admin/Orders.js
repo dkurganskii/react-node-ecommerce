@@ -36,9 +36,10 @@ useEffect(()=>{
 }, [])
 
     const showInput=(key, value)=>(
+       
         <div className='input-group mb-2 mr-sm-2'>
-        <div className='input-group-prepend'>
-       <div className='input-group-text'>{key}</div>
+        <div className='input-group-prepend '>
+       <div className='input-group-text '>{key}</div>
         <input type='text' value={value} className='form-control' readOnly/>
         </div>
     </div>
@@ -47,7 +48,7 @@ useEffect(()=>{
 const showOrdersLength = ()=>{
     if(orders.length > 0){
         return(
-        <h1 className="text-danger display-2">Total orders: {orders.length}</h1>
+        <h1 className="text-danger display-2 ">Total orders: {orders.length}</h1>
         )
     }else{
         return <h1 className="text-danger">No orders</h1>
@@ -89,11 +90,11 @@ return ( <Layout title="Orders" description={`Welcome ${user.name}, you can mana
                     {showOrdersLength()}
                    {orders.map((o, oIndex)=>{
 return(
-    <div className='mt-5' key={oIndex} style={{borderBottom: '5px solid indigo'}}>
-        <h2 className='mb-5'>
+    <div className='mt-5 ' key={oIndex} style={{borderBottom: '5px solid indigo'}}>
+        <h3 className='mb-5'>
 <span className='bg-primary'>Order id: {o._id}</span>
-        </h2>
-        <ul className='list-group mb-2'>
+        </h3>
+        <ul className='list-group mb-2 '>
 <li className='list-group-item'>{showStatus(o)}</li>
 <li className='list-group-item'>Transaction ID: {o.transaction_id}</li>
 <li className='list-group-item'>Amount: ${o.amount}</li>

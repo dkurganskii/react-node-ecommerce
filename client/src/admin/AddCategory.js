@@ -33,12 +33,12 @@ const AddCategory = () => {
 	};
 
 	const newCategoryForm = () => (
-		<form onSubmit={clickSubmit}>
-			<div className="form-group">
+		<form  onSubmit={clickSubmit}>
+			<div className="form-group col-sm-12 col-md-12 col-lg-4">
 				<label className="text-muted">Name</label>
 				<input type="text" className="form-control" onChange={handleChange} value={name} autoFocus required />
-			</div>
-			<button className="btn btn-outline-primary">Create Category</button>
+			</div >
+			<button className="btn btn-outline-primary ml-3 mt-3">Create Category</button>
 		</form>
 	);
 
@@ -55,7 +55,7 @@ const AddCategory = () => {
 	};
 
 	const goBack = () => (
-		<div className="mt-5">
+		<div className="mt-5 ml-3 mb-2">
 			<Link to="/admin/dashboard" className="text-warning">
 				Back to Dashboard
 			</Link>
@@ -65,7 +65,8 @@ const AddCategory = () => {
 	return (
 		<Layout title="Add a new category" description={`Welcome ${user.name}, ready to add a new category?`}>
 			<div className="row">
-				<div className="col-md-8 offset-md-2">
+				{/* <div className="col-md-8 offset-md-2"> */}
+				<div className="col-sm-12 col-md-3 col-lg-12 mb-2">
 					{showSuccess()}
 					{showError()}
 					{newCategoryForm()}
