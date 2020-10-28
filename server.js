@@ -3,6 +3,7 @@ require('dotenv').config();
 const mongoose = require('mongoose');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
+const path = require('path');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 
@@ -38,6 +39,16 @@ app.use('/api', categoryRoutes);
 app.use('/api', productRoutes);
 app.use('/api', braintreeRoutes);
 app.use('/api', orderRoutes);
+
+// Serve static assets if in production
+if(process.env.NODE_ENV === 'production'){
+// Set static folder
+app.use(express.static('client/build'))
+
+app.get('*', (req, res)=> {
+res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
+})
+}
 
 const port = process.env.PORT || 8000;
 
