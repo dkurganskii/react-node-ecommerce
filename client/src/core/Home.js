@@ -41,19 +41,19 @@ const Home = () => {
             className="container-fluid"
         >
             <Search />
-            <h2 className="mb-4">New Arrivals</h2>
-            <div className="row">
+            <h2 >New Arrivals</h2>
+            <div className="row m-5">
                 {productsByArrival.map((product, i) => (
-                    <div key={i} className="col-sm-12 col-md-6 col-lg-4 mb-3">
+                    <div key={i} className="col-sm-12 col-md-8 col-lg-4 mb-5">
                         <Card product={product} />
                     </div>
                 ))}
             </div>
 
             <h2 className="mb-4">Best Sellers</h2>
-            <div className="row">
+            <div className="row m-5">
                 {productsBySell.map((product, i) => (
-                    <div key={i} className="col-sm-12 col-md-6 col-lg-4 mb-3">
+                    <div key={i} className="col-sm-12 col-md-6 col-lg-4 mb-5">
                         <Card product={product} />
                     </div>
                 ))}
