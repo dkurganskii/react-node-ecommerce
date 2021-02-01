@@ -4,9 +4,9 @@ import { read, listRelated } from './ApiCore';
 import SingleCard from './SingleCard';
 
 const Product = (props) => {
-	const [ product, setProduct ] = useState({});
-	const [ relatedProduct, setRelatedProduct ] = useState([]);
-	const [ error, setError ] = useState(false);
+	const [product, setProduct] = useState({});
+	const [relatedProduct, setRelatedProduct] = useState([]);
+	const [error, setError] = useState(false);
 
 	const loadSingleProduct = (productId) => {
 		read(productId).then((data) => {
@@ -31,9 +31,9 @@ const Product = (props) => {
 			const productId = props.match.params.productId;
 			loadSingleProduct(productId);
 		},
-		[ props ]
+		[props]
 	);
-	
+
 
 	return (
 		<Layout
@@ -41,11 +41,12 @@ const Product = (props) => {
 			description='Good Choice!'
 			className="container-fluid"
 		>
-			<div className="row">
-				<div className="col-sm-12 col-md-6 col-lg-8"> 
+			<div className="row ">
+				{/* <div className="col-sm-12 col-md-6 col-lg-8"> */}
+				<div className="col-4">
 					{product && product.description && <SingleCard product={product} showViewProductButton={false} />}
 				</div>
-				<div className="col-sm-12 col-md-6 col-lg-4 mt-2">
+				<div className="col-sm-12 col-md-6 col-lg-4 mt-2 mb-5 d-flex align-items-stretch">
 					<h4>Related products</h4>
 					{relatedProduct.map((p, i) => (
 						<div className="mb-3">

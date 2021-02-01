@@ -3,7 +3,7 @@ import { Link, Redirect } from 'react-router-dom';
 import ShowImage from './ShowImage';
 import moment from 'moment';
 import { addItem, updateItem, removeItem } from './CartHelpers';
- 
+
 const SingleCard = ({
     product,
     showViewProductButton = true,
@@ -26,15 +26,15 @@ const SingleCard = ({
         );
     };
     const addToCart = () => {
-        addItem(product, ()=>{setRedirect(true)});
+        addItem(product, () => { setRedirect(true) });
     };
- 
+
     const shouldRedirect = redirect => {
         if (redirect) {
             return <Redirect to="/cart" />;
         }
     };
- 
+
     const showAddToCartBtn = showAddToCartButton => {
         return product.quantity > 0 ? (
             showAddToCartButton && (
@@ -44,7 +44,7 @@ const SingleCard = ({
             )
         ) : null
     };
- 
+
     const showStock = quantity => {
         return quantity > 0 ? (
             <span className="badge badge-primary badge-pill">In Stock </span>
@@ -52,7 +52,7 @@ const SingleCard = ({
                 <span className="badge badge-danger badge-pill">Out of Stock </span>
             );
     };
- 
+
     const handleChange = (productId) => (event) => {
         setRun(!run); // run useEffect in parent Cart
         setCount(event.target.value < 1 ? 1 : event.target.value);
@@ -61,12 +61,12 @@ const SingleCard = ({
             window.alert(`Maximum available quantity is: ${product.quantity} items. Please modify your total quantity or your final purchase quantity will be a total of ${product.quantity} items`);
             return;
         }
- 
+
         if (event.target.value >= 1) {
             updateItem(productId, event.target.value);
         }
     };
- 
+
     const showCartUpdateOptions = cartUpdate => {
         return (
             cartUpdate && (
@@ -82,7 +82,7 @@ const SingleCard = ({
             )
         );
     };
- 
+
     const showRemoveButton = showRemoveProductButton => {
         return (
             showRemoveProductButton && (
@@ -110,17 +110,17 @@ const SingleCard = ({
                 <p className="black-8">Added on {moment(product.createdAt).fromNow()}</p>
                 {showStock(product.quantity)}
                 <br />
- 
+
                 {showViewButton(showViewProductButton)}
- 
+
                 {showAddToCartBtn(showAddToCartButton)}
- 
+
                 {showRemoveButton(showRemoveProductButton)}
- 
+
                 {showCartUpdateOptions(cartUpdate)}
             </div>
         </div>
     );
 };
- 
+
 export default SingleCard;
