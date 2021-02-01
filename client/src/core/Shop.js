@@ -7,15 +7,15 @@ import RadioBox from './RadioBox';
 import { prices } from './FixedPrices';
 
 const Shop = () => {
-	const [ myFilters, setMyFilters ] = useState({
+	const [myFilters, setMyFilters] = useState({
 		filters: { category: [], price: [] }
 	});
-	const [ categories, setCategories ] = useState([]);
-	const [ error, setError ] = useState(false);
-	const [ limit, setLimit ] = useState(6);
-	const [ skip, setSkip ] = useState(0);
-	const [ size, setSize ] = useState(0);
-	const [ filteredResults, setFilteredResults ] = useState([]);
+	const [categories, setCategories] = useState([]);
+	const [error, setError] = useState(false);
+	const [limit, setLimit] = useState(6);
+	const [skip, setSkip] = useState(0);
+	const [size, setSize] = useState(0);
+	const [filteredResults, setFilteredResults] = useState([]);
 
 	const init = () => {
 		getCategories().then((data) => {
@@ -45,7 +45,7 @@ const Shop = () => {
 			if (data.error) {
 				setError(data.error);
 			} else {
-				setFilteredResults([ ...filteredResults, ...data.data ]);
+				setFilteredResults([...filteredResults, ...data.data]);
 				setSize(data.size);
 				setSkip(toSkip);
 			}
@@ -114,7 +114,7 @@ const Shop = () => {
 					<h2 className="mb-4">Products</h2>
 					<div className="row">
 						{filteredResults.map((product, i) => (
-							<div key={i} className="col-sm-8 col-md-8 col-lg-4 mb-3">
+							<div key={i} className="col-sm-8 col-md-8 col-lg-4 mb-3 d-flex align-items-stretch">
 								<Card product={product} />
 							</div>
 						))}
