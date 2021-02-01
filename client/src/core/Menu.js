@@ -13,7 +13,7 @@ const isActive = (history, path) => {
 
 const Menu = ({ history }) => (
 	<div>
-		<ul className="nav nav-tabs nav-tab-1 ">
+		<ul className="nav nav-tabs nav-tab-1 justify-content-end ">
 			<li className="nav-item">
 				<Link className="nav-link" style={isActive(history, '/')} to="/">
 					Home
@@ -34,24 +34,24 @@ const Menu = ({ history }) => (
 			</li>
 
 			{isAuthenticated() &&
-			isAuthenticated().user.role === 0 && (
-				<li className="nav-item">
-					<Link className="nav-link" style={isActive(history, '/user/dashboard')} to="/user/dashboard">
-						Dashboard
+				isAuthenticated().user.role === 0 && (
+					<li className="nav-item">
+						<Link className="nav-link" style={isActive(history, '/user/dashboard')} to="/user/dashboard">
+							Dashboard
 					</Link>
-				</li>
-			)}
+					</li>
+				)}
 
 			{isAuthenticated() &&
-			isAuthenticated().user.role === 1 && (
-				<li className="nav-item">
-					<Link className="nav-link" style={isActive(history, '/admin/dashboard')} to="/admin/dashboard">
-						Dashboard
+				isAuthenticated().user.role === 1 && (
+					<li className="nav-item">
+						<Link className="nav-link" style={isActive(history, '/admin/dashboard')} to="/admin/dashboard">
+							Dashboard
 					</Link>
-				</li>
-			)}
+					</li>
+				)}
 
-           
+
 
 			{!isAuthenticated() && (
 				<Fragment>
