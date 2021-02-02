@@ -99,7 +99,7 @@ const Card = ({
         );
     };
     return (
-        <div className="card card-1 mr-4">
+        <div className="card card-1 mr-4 mb-5">
             <div className="card-header card-header-1 ">{product.name}</div>
             <div className="card-body">
                 {shouldRedirect(redirect)}

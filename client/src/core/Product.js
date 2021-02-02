@@ -41,15 +41,16 @@ const Product = (props) => {
 			description='Good Choice!'
 			className="container-fluid"
 		>
-			<div className="row ">
-				{/* <div className="col-sm-12 col-md-6 col-lg-8"> */}
-				<div className="col-4">
+			<div className="row m-5">
+				<div className="col-sm-12 col-md-6 col-lg-8 ">
+					{/* <div className="col-4"> */}
 					{product && product.description && <SingleCard product={product} showViewProductButton={false} />}
 				</div>
-				<div className="col-sm-12 col-md-6 col-lg-4 mt-2 mb-5 d-flex align-items-stretch">
+				{/* mb-5 d-flex align-items-stretch */}
+				<div className="col-sm-12 col-md-6 col-lg-4 mt-2 align-items-stretch">
 					<h4>Related products</h4>
 					{relatedProduct.map((p, i) => (
-						<div className="mb-3">
+						<div className="mb-5">
 							<SingleCard key={i} product={p} />
 						</div>
 					))}

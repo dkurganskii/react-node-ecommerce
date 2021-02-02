@@ -6,14 +6,14 @@ import Card from './Card';
 import Checkout from './Checkout'
 
 const Cart = () => {
-	const [ run, setRun ] = useState(false);
-	const [ items, setItems ] = useState([]);
+	const [run, setRun] = useState(false);
+	const [items, setItems] = useState([]);
 
 	useEffect(
 		() => {
 			setItems(getCart());
 		},
-		[ run ]
+		[run]
 	);
 
 	const showItems = (items) => {
@@ -44,20 +44,20 @@ const Cart = () => {
 
 	return (
 		<Layout title="Shopping Cart" description="Manage your cart items" className="container-fluid">
-			<div className="row">
-			<div className="col-sm-12 col-md-6 col-lg-6 mb-2">{items.length > 0 ? showItems(items) : noItemsMessage()}</div>
+			<div className="row m-5">
+				<div className="col-sm-12 col-md-6 col-lg-6 mb-2">{items.length > 0 ? showItems(items) : noItemsMessage()}</div>
 
-			<div className="col-sm-12 col-md-6 col-lg-6 mb-2">
-					<h2 className="mb-4">Your cart summary</h2>
-					<hr/>
+				<div className="col-sm-12 col-md-6 col-lg-6 mb-2">
+					<h2 className="mb-3">Your cart summary</h2>
+					<hr />
 					<Checkout products={items} setRun={setRun} run={run} />
-					<br/>
-					<div>*Please use the following test credit card for payments*<br/>
-				<span style={{fontWeight: 'bold'}}>Card Number:</span> 4242 4242 4242 4242<br/>
-				<span style={{fontWeight: 'bold'}}>Expiration Date:</span> Any future date<br/>
+					<br />
+					<div>*Please use the following test credit card for payments*<br />
+						<span style={{ fontWeight: 'bold' }}>Card Number:</span> 4242 4242 4242 4242<br />
+						<span style={{ fontWeight: 'bold' }}>Expiration Date:</span> Any future date<br />
 					</div>
 				</div>
-				
+
 			</div>
 		</Layout>
 	);
